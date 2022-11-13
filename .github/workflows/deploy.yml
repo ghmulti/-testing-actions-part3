@@ -1,0 +1,29 @@
+name: Lint/Build/Deploy sample
+on: 
+  push:
+    branches:
+      - '/refs/heads/*'
+      - '!main'
+  workflow_dispatch:
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: pull code
+        uses: actions/checkout@v3
+      - name: install deps
+        run: npm ci
+      - name: lint
+        run: npm lint
+  test-and-deploy:
+    needs: lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: pull code
+        uses: actions/checkout@v3
+      - name: install deps
+        run: npm ci
+      - name: test
+        run: npm test
+      - name: deploy
+        run: npm build
