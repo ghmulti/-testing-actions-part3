@@ -14,7 +14,7 @@ jobs:
       - name: install deps
         run: npm ci
       - name: lint
-        run: npm lint
+        run: npm run lint
   test-and-deploy:
     needs: lint
     runs-on: ubuntu-latest
@@ -24,6 +24,6 @@ jobs:
       - name: install deps
         run: npm ci
       - name: test
-        run: npm test
+        run: npm run test
       - name: deploy
-        run: npm build
+        run: npm run build
