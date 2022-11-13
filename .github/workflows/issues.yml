@@ -1,5 +1,7 @@
 name: Issues sample
-on: issues
+on: 
+  issues:
+    types: [opened, edited, closed]
 jobs:
   details:
     runs-on: ubuntu-latest
